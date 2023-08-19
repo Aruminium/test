@@ -1,0 +1,17 @@
+services:
+  voicevox:
+    image: "voicevox/voicevox_engine:cpu-0.14.5"
+    ports:
+      - "50021:50021"
+  client:
+    container_name: client
+    image: "node:18.17.1-alpine"
+    volumes:
+      - type: bind
+        source: ./client
+        target: /var/www/client
+    working_dir: /var/www/client
+    tty: true
+    ports:
+      - "3000:3000"
+
